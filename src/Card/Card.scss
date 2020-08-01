@@ -1,0 +1,45 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.Card {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid white;
+
+  .Card-loading {
+    width: 4em;
+    height: 4em;
+    animation: 1.5s spin infinite ease;
+    border: 10px solid white;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-radius: 50%;
+  }
+}
+.hot {
+  background: rgb(228, 178, 0);
+  background: linear-gradient(176deg, rgba(228, 178, 0, 1) 13%, rgba(255, 139, 0, 1) 89%);
+}
+.rainy {
+  background: rgb(112, 181, 144);
+  background: linear-gradient(176deg, rgba(112, 181, 144, 1) 13%, rgba(86, 135, 132, 1) 89%);
+}
+.mild {
+  background: rgb(79, 141, 64);
+  background: linear-gradient(176deg, rgba(79, 141, 64, 1) 28%, rgba(127, 141, 64, 1) 89%);
+}
+.cold {
+  background: rgb(33, 150, 172);
+  background: linear-gradient(176deg, rgba(33, 150, 172, 1) 41%, rgba(26, 64, 164, 1) 89%);
+}
+.storm {
+  background: rgb(133, 55, 86);
+  background: linear-gradient(176deg, rgba(133, 55, 86, 1) 34%, rgba(133, 63, 55, 1) 100%);
+}
