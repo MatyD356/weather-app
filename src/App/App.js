@@ -12,7 +12,6 @@ const App = () => {
       <Card bgTemp="mild" />
       <Card bgTemp="cold" />
       <Card bgTemp="storm" />
-
     </div>
   );
 }
