@@ -1,5 +1,8 @@
 .App {
-  min-height: 100vh;
-  background: rgb(234, 255, 0);
-  background: linear-gradient(180deg, rgba(234, 255, 0, 1) 0%, rgba(121, 55, 9, 1) 100%);
+  font-family: "Roboto", sans-serif;
+  color: white;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: repeat(5, 1fr);
 }
