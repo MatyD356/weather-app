@@ -33,7 +33,7 @@ class CardContainer extends React.Component {
   sortData = (dataArray, dataObj) => {
     const hour = 8 - Math.floor(new Date().getHours() / 3);
     const sortedArray = []
-    for (let i = 0; i <= dataArray.length; i += 8) {
+    for (let i = 0; i < dataArray.length; i += 8) {
       if (i < 8) {
         sortedArray.push(Object.assign({}, dataObj, { list: [...dataArray.slice(i, hour + i)] }));
       } else {
@@ -42,7 +42,7 @@ class CardContainer extends React.Component {
     }
     this.setState({
       sorted: sortedArray
-    }, () => console.log(this.state))
+    })
   }
   changeLoding = () => {
     this.setState({
@@ -52,15 +52,13 @@ class CardContainer extends React.Component {
   render() {
     return (
       <div className="CardContainer" >
-        <Card
-          key={1}
-          loading={this.state.loadingData}
-          data={this.state.sorted[0]}
-          bgTemp="hot" />
-        <Card bgTemp="rainy" />
-        <Card bgTemp="mild" />
-        <Card bgTemp="cold" />
-        <Card bgTemp="storm" />
+        {this.state.sorted.map((item, index) => {
+          return (<Card
+            key={index}
+            loading={this.state.loadingData}
+            data={item}
+            bgTemp="hot" />)
+        })}
       </div >
     )
   }
