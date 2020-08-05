@@ -1,6 +1,7 @@
 import React from 'react'
 import './CardContainer.scss'
 import Card from '../Card/Card'
+import { v4 as uuidv4 } from 'uuid';
 
 class CardContainer extends React.Component {
   constructor(props) {
@@ -55,10 +56,10 @@ class CardContainer extends React.Component {
       <div className="CardContainer" >
         {this.state.sorted.map((item, index) => {
           return (<Card
+            id={uuidv4()}
             key={index}
             loading={this.state.loadingData}
-            data={item}
-            bgTemp="hot" />)
+            data={item} />)
         })}
       </div >
     )

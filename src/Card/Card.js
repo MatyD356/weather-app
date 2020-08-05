@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './Card.scss'
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
-import AcUnitIcon from '@material-ui/icons/AcUnit';
 import CloudIcon from '@material-ui/icons/Cloud';
 import GrainIcon from '@material-ui/icons/Grain';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
@@ -10,10 +9,12 @@ import WavesIcon from '@material-ui/icons/Waves';
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
 
 const Card = (props) => {
   const [data, setData] = useState(null);
   const [i, setI] = useState(0);
+  const [isOn, setOn] = useState(true)
   useEffect(() => {
     setData(props.data)
   }, [props.data])
@@ -51,12 +52,16 @@ const Card = (props) => {
         return [<WbSunnyOutlinedIcon style={{ fontSize: 200 }} />, 'hot']
     }
   }
+  const handleSwitch = () => {
+    setOn(!isOn)
+  }
   return (
     <div className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}`
       : `Card`} >
       {props.loading === true ? <div className="Card-loading" /> : data ?
         <div className="Card-content">
           {console.log(data)}
+          {console.log(props.id)}
           {console.log(new Date('2020 - 08 - 09').getDay())}
           <div className="Card-day container">
             <h2>{getDayOfWeek(data.list)}</h2>
@@ -87,11 +92,27 @@ const Card = (props) => {
 
           {/* card temp*/}
           <div className="Card-temp container">
-            <h2>Temp:</h2>
-            <p>{KelwinToCelsius(data.list[i].main.temp)}°C</p>
-            <p>{KelwinToFahrenheit(data.list[i].main.temp)}°F</p>
+            <div className="Card-temp-switch">
+              <p className="Card-temp-title">
+                {isOn ? `${KelwinToCelsius(data.list[i].main.temp)}`
+                  : `${KelwinToFahrenheit(data.list[i].main.temp)}`}
+              </p>
+              <div className="onoffswitch">
+                <input
+                  type="checkbox"
+                  id={props.id}
+                  className="onoffswitch-checkbox"
+                  onChange={handleSwitch}
+                  checked={isOn}
+                />
+                <label className="onoffswitch-label" htmlFor={props.id}>
+                  <span className="onoffswitch-inner"></span>
+                  <span className="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
           </div>
-
+          <canvas id="myChart" width="300" height="300"></canvas>
         </div >
         : null}
     </div >
