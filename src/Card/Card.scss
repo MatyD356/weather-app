@@ -6,7 +6,11 @@
     transform: rotate(359deg);
   }
 }
-$gradient: linear-gradient(95deg, rgba(133,63,55,1) 0%, rgba(133,55,86,1) 10%, rgba(228,178,0,1) 20%, rgba(255,139,0,1) 30%, rgba(127,141,64,1) 40%, rgba(79,141,64,1) 50%, rgba(86,181,144,1) 60%, rgba(112,181,144,1) 70%, rgba(33,150,172,1) 80%, rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
+$gradient: linear-gradient(95deg, 
+rgba(133,63,55,1) 0%, rgba(133,55,86,1) 10%, rgba(228,178,0,1) 20%, 
+rgba(255,139,0,1) 30%, rgba(127,141,64,1) 40%, rgba(79,141,64,1) 50%, 
+rgba(86,181,144,1) 60%, rgba(112,181,144,1) 70%, rgba(33,150,172,1) 80%, 
+rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
 
 .Card {
   color: white;
@@ -29,6 +33,44 @@ $gradient: linear-gradient(95deg, rgba(133,63,55,1) 0%, rgba(133,55,86,1) 10%, r
     border-bottom: 10px solid transparent;
     border-radius: 50%;
   }
+  .Card-content{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+  .Card-time-display{
+    font-size: 2rem;
+    }
+
+  .btn{
+    cursor: pointer;
+    display: inline;
+    color: white;
+    border: none;
+    background-color: transparent;
+    opacity: 0.75;
+    transition-duration: 200ms;
+
+  }
+  .btn:hover{
+    opacity: 1;
+    color: white;
+    transform: scale(1.1);
+  }
+}
+.Card-time{
+  flex-direction: row;
+}
+
 }
 .hot {
   background-position: 25%;

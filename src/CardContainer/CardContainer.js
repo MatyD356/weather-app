@@ -15,7 +15,7 @@ class CardContainer extends React.Component {
   async componentDidMount() {
     this.changeLoding()
     try {
-      const city = "london"
+      const city = "rijeka"
       const key = process.env.REACT_APP_NOT_SECRET_CODE;
       const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
       const response = await fetch(url, { mode: 'cors' });
@@ -23,7 +23,7 @@ class CardContainer extends React.Component {
       const json = await response.json()
         .then(json => {
           this.sortData(json.list, json);
-          this.changeLoding()
+          setTimeout(() => this.changeLoding(), 1000)
           return json
         })
     } catch (error) {
@@ -31,7 +31,8 @@ class CardContainer extends React.Component {
     }
   }
   sortData = (dataArray, dataObj) => {
-    const hour = 8 - Math.floor(new Date().getHours() / 3);
+    //to fix
+    const hour = (8 - Math.floor(new Date().getHours() / 3));
     const sortedArray = []
     for (let i = 0; i < dataArray.length; i += 8) {
       if (i < 8) {
