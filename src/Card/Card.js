@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './Card.scss'
+
+import { Line } from 'react-chartjs-2'
+
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
 import CloudIcon from '@material-ui/icons/Cloud';
 import GrainIcon from '@material-ui/icons/Grain';
@@ -11,10 +14,67 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 
+
+
+const dataLine = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      label: 'Temp',
+      fill: true,
+      lineTension: 0.35,
+      backgroundColor: 'rgba(255,255,255,0.4)',
+      borderColor: 'rgba(255,255,255,0.75)',
+      borderCapStyle: 'mitt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(255,255,255,1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: [65, 59, 80, 81, 56, 55, 40],
+    }
+  ]
+};
+
+const opt = {
+  legend: {
+    display: false,
+  },
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          fontColor: "white"
+        },
+        gridLines: {
+          color: "rgba(255,255,255,0.1)",
+        }
+      }
+    ],
+    xAxes: [
+      {
+        ticks: {
+          fontColor: "white"
+        },
+        gridLines: {
+          color: "rgba(255,255,255,0.1)",
+        }
+      }]
+  }
+}
+
 const Card = (props) => {
   const [data, setData] = useState(null);
   const [i, setI] = useState(0);
   const [isOn, setOn] = useState(true)
+
   useEffect(() => {
     setData(props.data)
   }, [props.data])
@@ -61,8 +121,6 @@ const Card = (props) => {
       {props.loading === true ? <div className="Card-loading" /> : data ?
         <div className="Card-content">
           {console.log(data)}
-          {console.log(props.id)}
-          {console.log(new Date('2020 - 08 - 09').getDay())}
           <div className="Card-day container">
             <h2>{getDayOfWeek(data.list)}</h2>
             <p>{data.city.name} | {data.city.country}</p>
@@ -112,7 +170,10 @@ const Card = (props) => {
               </div>
             </div>
           </div>
-          <canvas id="myChart" width="300" height="300"></canvas>
+          {/* Card Chart */}
+          <Line
+            data={dataLine}
+            options={opt} />
         </div >
         : null}
     </div >
