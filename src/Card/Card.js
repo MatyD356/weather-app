@@ -20,6 +20,9 @@ const Card = (props) => {
   const [isOn, setOn] = useState(true)
   useEffect(() => {
     setData(props.data)
+    if (props.data.list && props.data.list.length === 8) {
+      setI(4)
+    }
   }, [props.data])
   const getDayOfWeek = (dataArray) => {
     const week = [
