@@ -33,6 +33,9 @@ class CardContainer extends React.Component {
   }
   sortData = (dataArray, dataObj) => {
     //to fix
+    //6 offset by 1
+    //18 offset by 1
+    //12 offset by 1
     const hour = (8 - Math.floor(new Date().getHours() / 3));
     const sortedArray = []
     for (let i = 0; i < dataArray.length; i += 8) {
