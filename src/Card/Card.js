@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import CardChart from './CardChart'
+import CardChart from './CardChart/CardChart'
 import './Card.scss'
 
 
@@ -18,7 +18,6 @@ const Card = (props) => {
   const [data, setData] = useState(null);
   const [i, setI] = useState(0);
   const [isOn, setOn] = useState(true)
-
   useEffect(() => {
     setData(props.data)
   }, [props.data])
@@ -83,11 +82,11 @@ const Card = (props) => {
           {/* card time */}
           <div className="Card-time container">
             <button className="Card-hour-up btn" onClick={() => i > 0 ? setI(i - 1) : null} >
-              <ArrowBackIosIcon style={{ fontSize: 60 }} />
+              <ArrowBackIosIcon style={{ fontSize: 40 }} />
             </button>
             <h2 className="Card-time-display">{data.list[i].dt_txt.slice(10, 16)}</h2>
             <button className="Card-hour-up btn" onClick={() => i < data.list.length - 1 ? setI(i + 1) : null} >
-              <ArrowForwardIosIcon style={{ fontSize: 60 }} />
+              <ArrowForwardIosIcon style={{ fontSize: 40 }} />
             </button>
           </div>
 
@@ -95,8 +94,8 @@ const Card = (props) => {
           <div className="Card-temp container">
             <div className="Card-temp-switch">
               <p className="Card-temp-title">
-                {isOn ? `${KelwinToCelsius(data.list[i].main.temp)}`
-                  : `${KelwinToFahrenheit(data.list[i].main.temp)}`}
+                {isOn ? `${KelwinToCelsius(data.list[i].main.temp)}°C`
+                  : `${KelwinToFahrenheit(data.list[i].main.temp)}°F`}
               </p>
               <div className="onoffswitch">
                 <input
@@ -113,9 +112,14 @@ const Card = (props) => {
               </div>
             </div>
             {/* card chart*/}
-            <CardChart
-              apiData={data.list}
-            />
+            <div className="Card-chart container">
+              <CardChart
+                unit={isOn}
+                toCelsius={KelwinToCelsius}
+                toFarenheit={KelwinToFahrenheit}
+                apiData={data.list}
+              />
+            </div>
           </div>
         </div >
         : null}
