@@ -19,7 +19,7 @@ class CardContainer extends React.Component {
       //rijeka
       const city = "moscow"
       const key = process.env.REACT_APP_NOT_SECRET_CODE;
-      const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
       const response = await fetch(url, { mode: 'cors' });
       //eslint-disable-next-line
       const json = await response.json()
