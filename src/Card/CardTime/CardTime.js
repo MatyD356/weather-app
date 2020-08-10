@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const CardTime = (props) => {
   return (
-    <di className="Card-time">
+    <div className="Card-time">
       <button className="Card-hour-up btn" onClick={props.decrementI} >
         <ArrowBackIosIcon style={{ fontSize: 40 }} />
       </button>
@@ -14,7 +14,7 @@ const CardTime = (props) => {
       <button className="Card-hour-up btn" onClick={props.incrementI} >
         <ArrowForwardIosIcon style={{ fontSize: 40 }} />
       </button>
-    </di>
+    </div>
   )
 }
 export default CardTime

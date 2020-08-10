@@ -1,6 +1,7 @@
 .App {
   font-family: "Roboto", sans-serif;
   color: white;
-  height: 100vh;
-  display: grid;
+  min-height: 100vh;
+  display: flex;
+  overflow-y: hidden;
 }

@@ -2,5 +2,11 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
+  width: 100vw;
 }
 
+@media(max-width:1199px){
+  .CardContainer{
+    width: 500vw;
+  }
+}
