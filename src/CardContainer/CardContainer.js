@@ -16,7 +16,8 @@ class CardContainer extends React.Component {
   async componentDidMount() {
     this.changeLoding()
     try {
-      const city = "rijeka"
+      //rijeka
+      const city = "moscow"
       const key = process.env.REACT_APP_NOT_SECRET_CODE;
       const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
       const response = await fetch(url, { mode: 'cors' });
@@ -36,8 +37,8 @@ class CardContainer extends React.Component {
     //6 offset by 1
     //18 offset by 1
     //12 offset by 1
-    const hour = (8 - Math.floor(new Date().getHours() / 3));
     const sortedArray = []
+    let hour = (8 - Math.floor(new Date().getHours() / 3));
     for (let i = 0; i < dataArray.length; i += 8) {
       if (i < 8) {
         sortedArray.push(Object.assign({}, dataObj, { list: [...dataArray.slice(i, hour + i)] }));

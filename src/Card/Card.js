@@ -37,21 +37,36 @@ const Card = (props) => {
     return Math.round((((tempKelvin * (9 / 5)) - 459.67) + Number.EPSILON) * 100) / 100;
   }
   const ChoseIcon = (dataArray) => {
+    let hour = new Date(dataArray[i].dt_txt).getHours()
     switch (dataArray[i].weather[0].main) {
       case 'Thunderstorm':
+        if (hour > 18 || hour < 6) {
+          return [<FlashOnIcon style={{ fontSize: 200 }} />, 'cold']
+        }
         return [<FlashOnIcon style={{ fontSize: 200 }} />, 'storm']
       case 'Drizzle':
+        if (hour > 18 || hour < 6) {
+          return [<GrainIcon style={{ fontSize: 200 }} />, 'cold']
+        }
         return [<GrainIcon style={{ fontSize: 200 }} />, 'rainy']
       case 'Rain':
+        if (hour > 18 || hour < 6) {
+          return [<GrainIcon style={{ fontSize: 200 }} />, 'cold']
+        }
         return [<GrainIcon style={{ fontSize: 200 }} />, 'rainy']
       case 'Snow':
         return [<AcUnitIcon style={{ fontSize: 200 }} />, 'cold']
       case 'Mist':
+        if (hour > 18 || hour < 6) {
+          return [<WavesIcon style={{ fontSize: 200 }} />, 'cold']
+        }
         return [<WavesIcon style={{ fontSize: 200 }} />, 'mild']
       case 'Clouds':
+        if (hour > 18 || hour < 6) {
+          return [<CloudIcon style={{ fontSize: 200 }} />, 'cold']
+        }
         return [<CloudIcon style={{ fontSize: 200 }} />, 'mild']
       default:
-        let hour = new Date(dataArray[i].dt_txt).getHours()
         if (hour > 18 || hour < 6) {
           return [<NightsStayOutlinedIcon style={{ fontSize: 200 }} />, 'cold']
         }
