@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CardChart from './CardChart/CardChart'
 import CardTemp from './CardTemp/CardTemp'
+import CardTime from './CardTime/CardTime'
 import './Card.scss'
 
 
@@ -10,8 +11,6 @@ import GrainIcon from '@material-ui/icons/Grain';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import WavesIcon from '@material-ui/icons/Waves';
 import NightsStayOutlinedIcon from '@material-ui/icons/NightsStayOutlined';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 
 const Card = (props) => {
@@ -76,6 +75,11 @@ const Card = (props) => {
   const handleSwitch = () => {
     setOn(!isCelsius)
   }
+
+  const decrementI = () => i > 0 ? setI(i - 1) : null
+
+  const incrementI = () => i < data.list.length - 1 ? setI(i + 1) : null
+
   return (
     <div className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}`
       : `Card`} >
@@ -99,13 +103,11 @@ const Card = (props) => {
 
           {/* card time */}
           <div className="Card-time container">
-            <button className="Card-hour-up btn" onClick={() => i > 0 ? setI(i - 1) : null} >
-              <ArrowBackIosIcon style={{ fontSize: 40 }} />
-            </button>
-            <h2 className="Card-time-display">{data.list[i].dt_txt.slice(10, 16)}</h2>
-            <button className="Card-hour-up btn" onClick={() => i < data.list.length - 1 ? setI(i + 1) : null} >
-              <ArrowForwardIosIcon style={{ fontSize: 40 }} />
-            </button>
+            <CardTime
+              incrementI={incrementI}
+              decrementI={decrementI}
+              apiData={data.list}
+              i={i} />
           </div>
 
           {/* card temp*/}

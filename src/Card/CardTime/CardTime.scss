@@ -1,0 +1,23 @@
+  .Card-time{
+    display: flex;
+  
+  .Card-time-display{
+    font-size: 2rem;
+    }
+
+  .btn{
+    cursor: pointer;
+    display: inline;
+    color: white;
+    border: none;
+    background-color: transparent;
+    opacity: 0.75;
+    transition-duration: 200ms;
+
+  }
+  .btn:hover{
+    opacity: 1;
+    color: white;
+    transform: scale(1.1);
+  }
+}

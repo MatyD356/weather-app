@@ -46,34 +46,8 @@ rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
-  .Card-time-display{
-    font-size: 2rem;
-    }
-
-  .btn{
-    cursor: pointer;
-    display: inline;
-    color: white;
-    border: none;
-    background-color: transparent;
-    opacity: 0.75;
-    transition-duration: 200ms;
-
-  }
-  .btn:hover{
-    opacity: 1;
-    color: white;
-    transform: scale(1.1);
-  }
 }
-.Card-time{
-  flex-direction: row;
-}
-.Card-temp{
-  width: 80%;
-}
+
 }
 .hot {
   background-position: 25%;
