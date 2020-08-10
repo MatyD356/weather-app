@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CardChart from './CardChart/CardChart'
+import CardTemp from './CardTemp/CardTemp'
 import './Card.scss'
 
 
@@ -17,7 +17,7 @@ import AcUnitIcon from '@material-ui/icons/AcUnit';
 const Card = (props) => {
   const [data, setData] = useState(null);
   const [i, setI] = useState(0);
-  const [isOn, setOn] = useState(true)
+  const [isCelsius, setOn] = useState(true)
   useEffect(() => {
     setData(props.data)
     if (props.data.list && props.data.list.length === 8) {
@@ -74,7 +74,7 @@ const Card = (props) => {
     }
   }
   const handleSwitch = () => {
-    setOn(!isOn)
+    setOn(!isCelsius)
   }
   return (
     <div className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}`
@@ -110,34 +110,24 @@ const Card = (props) => {
 
           {/* card temp*/}
           <div className="Card-temp container">
-            <div className="Card-temp-switch">
-              <p className="Card-temp-title">
-                {isOn ? `${KelwinToCelsius(data.list[i].main.temp)}°C`
-                  : `${KelwinToFahrenheit(data.list[i].main.temp)}°F`}
-              </p>
-              <div className="onoffswitch">
-                <input
-                  type="checkbox"
-                  id={props.id}
-                  className="onoffswitch-checkbox"
-                  onChange={handleSwitch}
-                  checked={isOn}
-                />
-                <label className="onoffswitch-label" htmlFor={props.id}>
-                  <span className="onoffswitch-inner"></span>
-                  <span className="onoffswitch-switch"></span>
-                </label>
-              </div>
-            </div>
-            {/* card chart*/}
-            <div className="Card-chart container">
-              <CardChart
-                unit={isOn}
-                toCelsius={KelwinToCelsius}
-                toFarenheit={KelwinToFahrenheit}
-                apiData={data.list}
-              />
-            </div>
+            <CardTemp
+              id={props.id}
+              i={i}
+              unit={isCelsius}
+              handleSwitch={handleSwitch}
+              toFarenheit={KelwinToFahrenheit}
+              toCelsius={KelwinToCelsius}
+              apiData={data.list}
+            />
+          </div>
+          {/* card chart*/}
+          <div className="Card-chart container">
+            <CardChart
+              unit={isCelsius}
+              toCelsius={KelwinToCelsius}
+              toFarenheit={KelwinToFahrenheit}
+              apiData={data.list}
+            />
           </div>
         </div >
         : null}
