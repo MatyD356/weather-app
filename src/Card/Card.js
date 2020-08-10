@@ -3,6 +3,7 @@ import CardChart from './CardChart/CardChart'
 import CardTemp from './CardTemp/CardTemp'
 import CardTime from './CardTime/CardTime'
 import CardData from './CardDate/CardDate'
+import CardWeather from './CardWeather/CardWeather'
 import './Card.scss'
 
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
@@ -85,18 +86,20 @@ const Card = (props) => {
       : `Card`} >
       {props.loading === true ? <div className="Card-loading" /> : data ?
         <div className="Card-content">
+
           {/* card date */}
           <div className="container">
             <CardData
               getDayOfWeek={getDayOfWeek}
               data={data} />
           </div>
+
           {/* card weather */}
-          <div className="Card-weather container">
-            {ChoseIcon(data.list)[0]}
-            <h2>Weather:</h2>
-            <p>{data.list[i].weather[0].description}</p>
-          </div>
+          <CardWeather
+            i={i}
+            apiData={data.list}
+            ChoseIcon={ChoseIcon} />
+
           {/* card time */}
           <div className="container">
             <CardTime
@@ -105,6 +108,7 @@ const Card = (props) => {
               apiData={data.list}
               i={i} />
           </div>
+
           {/* card temp*/}
           <CardTemp
             id={props.id}
@@ -115,6 +119,7 @@ const Card = (props) => {
             toCelsius={KelwinToCelsius}
             apiData={data.list}
           />
+
           {/* card chart*/}
           <div className="container">
             <CardChart
@@ -124,6 +129,7 @@ const Card = (props) => {
               apiData={data.list}
             />
           </div>
+
         </div >
         : null}
     </div >
