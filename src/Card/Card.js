@@ -81,9 +81,14 @@ const Card = (props) => {
 
   const incrementI = () => i < data.list.length - 1 ? setI(i + 1) : null
 
+  const handleTouch = (e) => {
+    console.log(e);
+  }
   return (
-    <div className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}`
-      : `Card`} >
+    <div
+      onTouchStart={handleTouch}
+      onTouchMove={handleTouch}
+      className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}` : `Card`} >
       {props.loading === true ?
         <div className="Card-loading" >
           <div className="Card-spinner" />

@@ -55,6 +55,7 @@ class CardContainer extends React.Component {
       loadingData: !this.state.loadingData
     })
   }
+
   render() {
     return (
       <div className="CardContainer" >
