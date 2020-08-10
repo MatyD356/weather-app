@@ -25,7 +25,11 @@ rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
   background-size: 1000%;
 
   .Card-loading {
-    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Card-spinner{
     width: 4em;
     height: 4em;
     animation: 1.5s spin infinite ease;
@@ -69,5 +73,15 @@ rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
     display: block;
     height: 100vh;
     width: 100vw;
+  }
+  .Card-loading {
+    width: 100vw;
+    height: 100vh;
+  }
+  .on-off-switch{
+    margin-left: 3rem;
+  }
+  .Card-temp-switch{
+    justify-content: center;
   }
 }

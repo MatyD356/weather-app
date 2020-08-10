@@ -84,54 +84,57 @@ const Card = (props) => {
   return (
     <div className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}`
       : `Card`} >
-      {props.loading === true ? <div className="Card-loading" /> : data ?
-        <div className="Card-content">
+      {props.loading === true ?
+        <div className="Card-loading" >
+          <div className="Card-spinner" />
+        </div> : data ?
+          <div className="Card-content">
 
-          {/* card date */}
-          <div className="container">
-            <CardData
-              getDayOfWeek={getDayOfWeek}
-              data={data} />
-          </div>
+            {/* card date */}
+            <div className="container">
+              <CardData
+                getDayOfWeek={getDayOfWeek}
+                data={data} />
+            </div>
 
-          {/* card weather */}
-          <CardWeather
-            i={i}
-            apiData={data.list}
-            ChoseIcon={ChoseIcon} />
-
-          {/* card time */}
-          <div className="container">
-            <CardTime
-              incrementI={incrementI}
-              decrementI={decrementI}
+            {/* card weather */}
+            <CardWeather
+              i={i}
               apiData={data.list}
-              i={i} />
-          </div>
+              ChoseIcon={ChoseIcon} />
 
-          {/* card temp*/}
-          <CardTemp
-            id={props.id}
-            i={i}
-            unit={isCelsius}
-            handleSwitch={handleSwitch}
-            toFarenheit={KelwinToFahrenheit}
-            toCelsius={KelwinToCelsius}
-            apiData={data.list}
-          />
+            {/* card time */}
+            <div className="container">
+              <CardTime
+                incrementI={incrementI}
+                decrementI={decrementI}
+                apiData={data.list}
+                i={i} />
+            </div>
 
-          {/* card chart*/}
-          <div className="container">
-            <CardChart
+            {/* card temp*/}
+            <CardTemp
+              id={props.id}
+              i={i}
               unit={isCelsius}
-              toCelsius={KelwinToCelsius}
+              handleSwitch={handleSwitch}
               toFarenheit={KelwinToFahrenheit}
+              toCelsius={KelwinToCelsius}
               apiData={data.list}
             />
-          </div>
 
-        </div >
-        : null}
+            {/* card chart*/}
+            <div className="container">
+              <CardChart
+                unit={isCelsius}
+                toCelsius={KelwinToCelsius}
+                toFarenheit={KelwinToFahrenheit}
+                apiData={data.list}
+              />
+            </div>
+
+          </div >
+          : null}
     </div >
   )
 }
