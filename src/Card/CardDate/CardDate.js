@@ -1,4 +1,5 @@
 import React from 'react'
+import './CardDate.scss'
 
 const CardDate = (props) => {
   return (

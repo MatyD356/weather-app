@@ -1,0 +1,14 @@
+.Card-day{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .Card-date{
+    margin-top: 2rem;
+  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
