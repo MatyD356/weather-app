@@ -1,0 +1,77 @@
+.Card-temp-switch{
+  font-size: 1.5rem;
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: center;
+
+  .on-off-switch{
+    position: relative; 
+    width: 70px;
+
+    .on-off-switch-checkbox{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    }
+
+    .on-off-switch-label{
+      display: block; 
+      overflow: hidden; 
+      cursor: pointer;
+      border: 2px solid white; 
+      border-radius: 20px;
+    }
+
+    .on-off-switch-inner{
+      display: block; 
+      width: 200%; 
+      margin-left: -100%;
+      transition: margin 0.3s ease-in 0s;
+
+      &:before, &:after {
+        display: block; 
+        float: left; 
+        width: 50%; 
+        height: 25px; 
+        padding: 0; 
+        line-height: 25px;
+        font-size: 14px; 
+        background-color: transparent; 
+        color: #FFFFFF;
+        font-family: Roboto, sans-serif; 
+        box-sizing: border-box;
+      }
+      &:before {
+        content: "°C";
+        padding-left: 20px;
+      }
+      &:after {
+        content: "°F";
+        padding-right: 18px;
+        text-align: right;
+      }
+    }
+
+    .on-off-switch-switch{
+      display: inline-block; 
+      width: 18px; 
+      margin: 6px;
+      background: transparent;
+      position: absolute; 
+      top: 0; 
+      bottom: 0;
+      right: 38px;
+      border: 2px solid white; 
+      border-radius: 20px;
+      transition: all 0.3s ease-in 0s; 
+    }
+    .on-off-switch-checkbox:checked + .on-off-switch-label .on-off-switch-inner {
+      margin-left: -5px;
+    }
+    .on-off-switch-checkbox:checked + .on-off-switch-label .on-off-switch-switch {
+      right: 0px; 
+    }
+  }
+}

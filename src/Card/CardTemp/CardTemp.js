@@ -1,23 +1,24 @@
 import React from 'react'
+import './CardTemp.scss'
 
 const CardTemp = (props) => {
   return (
     <div className="Card-temp-switch">
-      <p className="Card-temp-title">
+      <p>
         {props.unit ? `${props.toCelsius(props.apiData[props.i].main.temp)}°C`
           : `${props.toFarenheit(props.apiData[props.i].main.temp)}°F`}
       </p>
-      <div className="onoffswitch">
+      <div className="on-off-switch">
         <input
           type="checkbox"
           id={props.id}
-          className="onoffswitch-checkbox"
+          className="on-off-switch-checkbox"
           onChange={props.handleSwitch}
           checked={props.unit}
         />
-        <label className="onoffswitch-label" htmlFor={props.id}>
-          <span className="onoffswitch-inner"></span>
-          <span className="onoffswitch-switch"></span>
+        <label className="on-off-switch-label" htmlFor={props.id}>
+          <span className="on-off-switch-inner"></span>
+          <span className="on-off-switch-switch"></span>
         </label>
       </div>
     </div>

@@ -6,6 +6,7 @@
     transform: rotate(359deg);
   }
 }
+
 $gradient: linear-gradient(95deg, 
 rgba(133,63,55,1) 0%, rgba(133,55,86,1) 10%, rgba(228,178,0,1) 20%, 
 rgba(255,139,0,1) 30%, rgba(127,141,64,1) 40%, rgba(79,141,64,1) 50%, 
@@ -38,14 +39,6 @@ rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
-  }
-  .Card-temp-switch{
-    font-size: 1.5rem;
-    display: flex;
-    width: 85%;
-    justify-content: space-between;
-    margin-bottom: 2rem;
     align-items: center;
   }
   .container{
@@ -96,68 +89,4 @@ rgba(26,64,164,1) 90%, rgba(0,0,0,1) 100%);
 }
 .storm {
   background-position: 0%;
-}
-//switch
-.onoffswitch {
-  position: relative; 
-  width: 70px;
-}
-.onoffswitch-checkbox {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-.onoffswitch-label {
-  display: block; 
-  overflow: hidden; 
-  cursor: pointer;
-  border: 2px solid white; 
-  border-radius: 20px;
-}
-.onoffswitch-inner {
-  display: block; 
-  width: 200%; 
-  margin-left: -100%;
-  transition: margin 0.3s ease-in 0s;
-}
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-  display: block; 
-  float: left; 
-  width: 50%; 
-  height: 25px; 
-  padding: 0; 
-  line-height: 25px;
-  font-size: 14px; 
-  background-color: transparent; 
-  color: #FFFFFF;
-  font-family: Roboto, sans-serif; 
-  box-sizing: border-box;
-}
-.onoffswitch-inner:before {
-  content: "°C";
-  padding-left: 20px;
-}
-.onoffswitch-inner:after {
-  content: "°F";
-  padding-right: 18px;
-  text-align: right;
-}
-.onoffswitch-switch {
-  display: inline-block; 
-  width: 18px; 
-  margin: 6px;
-  background: transparent;
-  position: absolute; 
-  top: 0; 
-  bottom: 0;
-  right: 38px;
-  border: 2px solid white; 
-  border-radius: 20px;
-  transition: all 0.3s ease-in 0s; 
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-  margin-left: -5px;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-  right: 0px; 
 }
