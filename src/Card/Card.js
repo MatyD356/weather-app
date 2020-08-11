@@ -96,11 +96,9 @@ const Card = (props) => {
           <div className="Card-content">
 
             {/* card date */}
-            <div className="container">
-              <CardData
-                getDayOfWeek={getDayOfWeek}
-                data={data} />
-            </div>
+            <CardData
+              getDayOfWeek={getDayOfWeek}
+              data={data} />
 
             {/* card weather */}
             <CardWeather
@@ -109,13 +107,11 @@ const Card = (props) => {
               ChoseIcon={ChoseIcon} />
 
             {/* card time */}
-            <div className="container">
-              <CardTime
-                incrementI={incrementI}
-                decrementI={decrementI}
-                apiData={data.list}
-                i={i} />
-            </div>
+            <CardTime
+              incrementI={incrementI}
+              decrementI={decrementI}
+              apiData={data.list}
+              i={i} />
 
             {/* card temp*/}
             <CardTemp
@@ -129,14 +125,12 @@ const Card = (props) => {
             />
 
             {/* card chart*/}
-            <div className="container">
-              <CardChart
-                unit={isCelsius}
-                toCelsius={KelwinToCelsius}
-                toFarenheit={KelwinToFahrenheit}
-                apiData={data.list}
-              />
-            </div>
+            <CardChart
+              unit={isCelsius}
+              toCelsius={KelwinToCelsius}
+              toFarenheit={KelwinToFahrenheit}
+              apiData={data.list}
+            />
 
           </div >
           : null}
