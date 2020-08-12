@@ -10,7 +10,12 @@ class CardContainer extends React.Component {
       currentDay: new Date().getDay(),
       loadingData: null,
       sorted: [[], [], [], [], []],
-      data: {}
+      data: {},
+      activeCard: 0,
+      touchStartLocation: {
+        x: null,
+        y: null
+      }
     }
   }
   async componentDidMount() {
@@ -55,16 +60,53 @@ class CardContainer extends React.Component {
       loadingData: !this.state.loadingData
     })
   }
-
+  handleTouchStart = (e) => {
+    const firstTouchEvent = e.touches[0];
+    const location = {
+      x: firstTouchEvent.clientX,
+      y: firstTouchEvent.clientY
+    };
+    this.setState({
+      touchStartLocation: location
+    });
+  }
+  handleTouchEnd = (e) => {
+    const firstTouchEvent = e.changedTouches[0];
+    const location = {
+      x: firstTouchEvent.clientX,
+      y: firstTouchEvent.clientY
+    };
+    const differences = {
+      x: this.state.touchStartLocation.x - location.x,
+      y: this.state.touchStartLocation.y - location.y
+    };
+    console.log(differences);
+    const cards = document.querySelectorAll('.Card')
+    if (differences.x > 50 && this.state.activeCard < cards.length - 1) {
+      this.setState({
+        activeCard: this.state.activeCard + 1
+      }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth" })
+      )
+    } else if (differences.x < -50 && this.state.activeCard > 0) {
+      this.setState({
+        activeCard: this.state.activeCard - 1
+      }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth" })
+      )
+    }
+  }
   render() {
     return (
-      <div className="CardContainer" >
+      <div
+        onTouchStart={this.handleTouchStart}
+        onTouchEnd={this.handleTouchEnd}
+        className="CardContainer" >
         {this.state.sorted.map((item, index) => {
           return (<Card
             id={uuidv4()}
             key={index}
             loading={this.state.loadingData}
-            data={item} />)
+            data={item}
+          />)
         })}
       </div >
     )

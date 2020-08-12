@@ -17,7 +17,7 @@ import AcUnitIcon from '@material-ui/icons/AcUnit';
 const Card = (props) => {
   const [data, setData] = useState(null);
   const [i, setI] = useState(0);
-  const [isCelsius, setOn] = useState(true)
+  const [isCelsius, setOn] = useState(true);
   useEffect(() => {
     setData(props.data)
     if (props.data.list && props.data.list.length === 8) {
@@ -74,21 +74,14 @@ const Card = (props) => {
     }
   }
   const handleSwitch = () => {
-    setOn(!isCelsius)
+    setOn(!isCelsius);
   }
+  const decrementI = () => i > 0 ? setI(i - 1) : null;
 
-  const decrementI = () => i > 0 ? setI(i - 1) : null
+  const incrementI = () => i < data.list.length - 1 ? setI(i + 1) : null;
 
-  const incrementI = () => i < data.list.length - 1 ? setI(i + 1) : null
-
-  const handleTouch = (e) => {
-    console.log(e);
-  }
   return (
-    <div
-      onTouchStart={handleTouch}
-      onTouchMove={handleTouch}
-      className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}` : `Card`} >
+    <div className={data && !props.loading ? `Card ${ChoseIcon(data.list)[1]}` : `Card`} >
       {props.loading === true ?
         <div className="Card-loading" >
           <div className="Card-spinner" />
