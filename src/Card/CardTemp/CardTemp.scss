@@ -10,6 +10,10 @@
   justify-content: space-between;
   align-items: center;
 
+  button{
+    border: none;
+    background-color: transparent;
+  }
   .on-off-switch{
     position: relative; 
     width: 70px;
@@ -49,7 +53,7 @@
       }
       &:before {
         content: "°C";
-        padding-left: 20px;
+        padding-left: 0px;
       }
       &:after {
         content: "°F";
@@ -77,5 +81,10 @@
     .on-off-switch-checkbox:checked + .on-off-switch-label .on-off-switch-switch {
       right: 0px; 
     }
+  }
+}
+@media(max-width:350px){
+  .Card-temp-switch{
+    width: 100%;
   }
 }

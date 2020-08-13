@@ -41,36 +41,36 @@ const Card = (props) => {
     switch (dataArray[i].weather[0].main) {
       case 'Thunderstorm':
         if (hour > 18 || hour < 6) {
-          return [<FlashOnIcon style={{ fontSize: 200 }} />, 'cold']
+          return [<FlashOnIcon style={{ fontSize: 100 }} />, 'cold']
         }
-        return [<FlashOnIcon style={{ fontSize: 200 }} />, 'storm']
+        return [<FlashOnIcon style={{ fontSize: 100 }} />, 'storm']
       case 'Drizzle':
         if (hour > 18 || hour < 6) {
-          return [<GrainIcon style={{ fontSize: 200 }} />, 'cold']
+          return [<GrainIcon style={{ fontSize: 100 }} />, 'cold']
         }
-        return [<GrainIcon style={{ fontSize: 200 }} />, 'rainy']
+        return [<GrainIcon style={{ fontSize: 100 }} />, 'rainy']
       case 'Rain':
         if (hour > 18 || hour < 6) {
-          return [<GrainIcon style={{ fontSize: 200 }} />, 'cold']
+          return [<GrainIcon style={{ fontSize: 100 }} />, 'cold']
         }
-        return [<GrainIcon style={{ fontSize: 200 }} />, 'rainy']
+        return [<GrainIcon style={{ fontSize: 100 }} />, 'rainy']
       case 'Snow':
-        return [<AcUnitIcon style={{ fontSize: 200 }} />, 'cold']
+        return [<AcUnitIcon style={{ fontSize: 100 }} />, 'cold']
       case 'Mist':
         if (hour > 18 || hour < 6) {
-          return [<WavesIcon style={{ fontSize: 200 }} />, 'cold']
+          return [<WavesIcon style={{ fontSize: 100 }} />, 'cold']
         }
-        return [<WavesIcon style={{ fontSize: 200 }} />, 'mild']
+        return [<WavesIcon style={{ fontSize: 100 }} />, 'mild']
       case 'Clouds':
         if (hour > 18 || hour < 6) {
-          return [<CloudIcon style={{ fontSize: 200 }} />, 'cold']
+          return [<CloudIcon style={{ fontSize: 100 }} />, 'cold']
         }
-        return [<CloudIcon style={{ fontSize: 200 }} />, 'mild']
+        return [<CloudIcon style={{ fontSize: 100 }} />, 'mild']
       default:
         if (hour > 18 || hour < 6) {
-          return [<NightsStayOutlinedIcon style={{ fontSize: 200 }} />, 'cold']
+          return [<NightsStayOutlinedIcon style={{ fontSize: 100 }} />, 'cold']
         }
-        return [<WbSunnyOutlinedIcon style={{ fontSize: 200 }} />, 'hot']
+        return [<WbSunnyOutlinedIcon style={{ fontSize: 100 }} />, 'hot']
     }
   }
   const handleSwitch = () => {

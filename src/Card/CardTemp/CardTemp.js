@@ -9,7 +9,7 @@ const CardTemp = (props) => {
           {props.unit ? `${props.toCelsius(props.apiData[props.i].main.temp)}°C`
             : `${props.toFarenheit(props.apiData[props.i].main.temp)}°F`}
         </p>
-        <div className="on-off-switch">
+        <button className="on-off-switch">
           <input
             type="checkbox"
             id={props.id}
@@ -21,7 +21,7 @@ const CardTemp = (props) => {
             <span className="on-off-switch-inner"></span>
             <span className="on-off-switch-switch"></span>
           </label>
-        </div>
+        </button>
       </div>
     </div>
   )

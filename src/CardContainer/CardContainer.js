@@ -80,17 +80,16 @@ class CardContainer extends React.Component {
       x: this.state.touchStartLocation.x - location.x,
       y: this.state.touchStartLocation.y - location.y
     };
-    console.log(differences);
     const cards = document.querySelectorAll('.Card')
     if (differences.x > 50 && this.state.activeCard < cards.length - 1) {
       this.setState({
         activeCard: this.state.activeCard + 1
-      }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth" })
+      }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
       )
     } else if (differences.x < -50 && this.state.activeCard > 0) {
       this.setState({
         activeCard: this.state.activeCard - 1
-      }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth" })
+      }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
       )
     }
   }

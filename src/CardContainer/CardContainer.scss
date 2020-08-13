@@ -3,15 +3,14 @@
   grid-template-columns: repeat(5,minmax(20vw, 1fr));
   grid-template-rows: 1fr;
 }
-
 @media(max-width:1399px){
   .CardContainer{
-  grid-template-columns: repeat(5,minmax(25vw, 1fr));
+    grid-template-columns: repeat(5,minmax(25vw, 1fr));
   }
 }
 @media(max-width:1199px){
   .CardContainer{
-  grid-template-columns: repeat(5,minmax(100vw, 1fr));
+    grid-template-columns: repeat(5,minmax(100vw, 1fr));
   }
 }
 
