@@ -20,7 +20,7 @@ class CardContainer extends React.Component {
       }
     }
   }
-  async componentDidMount() {
+  async makeApiCall() {
     this.changeLoding()
     try {
       const city = this.state.city
@@ -35,34 +35,18 @@ class CardContainer extends React.Component {
           return json
         })
     } catch (error) {
-      console.log(error)
+      setTimeout(() => this.changeLoding(), 1000)
+      alert('City not found')
     }
   }
-  async componentDidUpdate(prevProps, prevState) {
+  componentDidMount() {
+    this.changeLoding()
+    this.makeApiCall()
+  }
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.city !== prevState.city) {
-      this.changeLoding()
-      try {
-        const city = this.state.city
-        const key = process.env.REACT_APP_NOT_SECRET_CODE;
-        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
-        const response = await fetch(url, { mode: 'cors' });
-        //eslint-disable-next-line
-        const json = await response.json()
-          .then(json => {
-            this.sortData(json.list, json);
-            setTimeout(() => this.changeLoding(), 1000)
-            return json
-          })
-      } catch (error) {
-        console.log(prevState);
-        this.setState({
-          city: 'Moscow'
-        }, () => console.log(prevState))
-        setTimeout(() => this.changeLoding(), 1000)
-        console.log(error)
-      }
+      this.makeApiCall()
     }
-    console.log(this.state.city, prevState.city);
   }
   changeCity = (newCityStr) => {
     this.setState({
