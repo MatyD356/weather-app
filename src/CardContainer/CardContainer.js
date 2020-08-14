@@ -7,17 +7,15 @@ import CityInput from '../CityInput/CityInput';
 class CardContainer extends React.Component {
   constructor(props) {
     super(props)
+    const lastCity = localStorage.city ? localStorage.getItem('city') : 'Moscow';
     this.state = {
       currentDay: new Date().getDay(),
       loadingData: null,
       sorted: [[], [], [], [], []],
       data: {},
       activeCard: 0,
-      city: 'Moscow',
-      touchStartLocation: {
-        x: null,
-        y: null
-      }
+      city: lastCity,
+      touchStartLocation: null
     }
   }
   async makeApiCall() {
@@ -40,7 +38,6 @@ class CardContainer extends React.Component {
     }
   }
   componentDidMount() {
-    this.changeLoding()
     this.makeApiCall()
   }
   componentDidUpdate(prevProps, prevState) {
@@ -48,10 +45,13 @@ class CardContainer extends React.Component {
       this.makeApiCall()
     }
   }
+  saveToStorage(key, value) {
+    localStorage.setItem(key, value);
+  }
   changeCity = (newCityStr) => {
     this.setState({
       city: newCityStr
-    }, () => console.log(this.state.city))
+    }, () => this.saveToStorage('city', this.state.city))
   }
   sortData = (dataArray, dataObj) => {
     //to fix
@@ -78,31 +78,22 @@ class CardContainer extends React.Component {
   }
   handleTouchStart = (e) => {
     const firstTouchEvent = e.touches[0];
-    const location = {
-      x: firstTouchEvent.clientX,
-      y: firstTouchEvent.clientY
-    };
+    const location = firstTouchEvent.clientX;
     this.setState({
       touchStartLocation: location
     });
   }
   handleTouchEnd = (e) => {
     const firstTouchEvent = e.changedTouches[0];
-    const location = {
-      x: firstTouchEvent.clientX,
-      y: firstTouchEvent.clientY
-    };
-    const differences = {
-      x: this.state.touchStartLocation.x - location.x,
-      y: this.state.touchStartLocation.y - location.y
-    };
+    const location = firstTouchEvent.clientX;
+    const differences = this.state.touchStartLocation - location;
     const cards = document.querySelectorAll('.Card')
-    if (differences.x > 50 && this.state.activeCard < cards.length - 1) {
+    if (differences > 50 && this.state.activeCard < cards.length - 1) {
       this.setState({
         activeCard: this.state.activeCard + 1
       }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
       )
-    } else if (differences.x < -50 && this.state.activeCard > 0) {
+    } else if (differences < -50 && this.state.activeCard > 0) {
       this.setState({
         activeCard: this.state.activeCard - 1
       }, () => cards[this.state.activeCard].scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
