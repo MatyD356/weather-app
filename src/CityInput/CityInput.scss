@@ -1,0 +1,38 @@
+.CityInput-container{
+  position: absolute;
+  top:2%;
+  right: 2%;
+  display: flex;
+  align-items: center;
+
+.CityInput{
+  height: 40px;
+  color: white;
+  border: 2px solid white;
+  background-color: transparent;
+  border-right: none;
+  border-radius: 20px 0 0 20px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  padding-left: 1rem;
+
+  &::placeholder{
+    color: white;
+    opacity: 0.8;
+  }
+}
+.CityInput-icon{
+  height: 40px;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 0 20px 20px 0;
+  border-left: 0;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: white; 
+}
+}

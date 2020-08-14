@@ -2,6 +2,7 @@ import React from 'react'
 import './CardContainer.scss'
 import Card from '../Card/Card'
 import { v4 as uuidv4 } from 'uuid';
+import CityInput from '../CityInput/CityInput';
 
 class CardContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class CardContainer extends React.Component {
       sorted: [[], [], [], [], []],
       data: {},
       activeCard: 0,
+      city: 'Moscow',
       touchStartLocation: {
         x: null,
         y: null
@@ -21,8 +23,7 @@ class CardContainer extends React.Component {
   async componentDidMount() {
     this.changeLoding()
     try {
-      //rijeka
-      const city = "moscow"
+      const city = this.state.city
       const key = process.env.REACT_APP_NOT_SECRET_CODE;
       const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
       const response = await fetch(url, { mode: 'cors' });
@@ -36,6 +37,37 @@ class CardContainer extends React.Component {
     } catch (error) {
       console.log(error)
     }
+  }
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.city !== prevState.city) {
+      this.changeLoding()
+      try {
+        const city = this.state.city
+        const key = process.env.REACT_APP_NOT_SECRET_CODE;
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
+        const response = await fetch(url, { mode: 'cors' });
+        //eslint-disable-next-line
+        const json = await response.json()
+          .then(json => {
+            this.sortData(json.list, json);
+            setTimeout(() => this.changeLoding(), 1000)
+            return json
+          })
+      } catch (error) {
+        console.log(prevState);
+        this.setState({
+          city: 'Moscow'
+        }, () => console.log(prevState))
+        setTimeout(() => this.changeLoding(), 1000)
+        console.log(error)
+      }
+    }
+    console.log(this.state.city, prevState.city);
+  }
+  changeCity = (newCityStr) => {
+    this.setState({
+      city: newCityStr
+    }, () => console.log(this.state.city))
   }
   sortData = (dataArray, dataObj) => {
     //to fix
@@ -99,14 +131,17 @@ class CardContainer extends React.Component {
         onTouchStart={this.handleTouchStart}
         onTouchEnd={this.handleTouchEnd}
         className="CardContainer" >
-        {this.state.sorted.map((item, index) => {
-          return (<Card
-            id={uuidv4()}
-            key={index}
-            loading={this.state.loadingData}
-            data={item}
-          />)
-        })}
+        <CityInput newCity={this.changeCity} />
+        {
+          this.state.sorted.map((item, index) => {
+            return (<Card
+              id={uuidv4()}
+              key={index}
+              loading={this.state.loadingData}
+              data={item}
+            />)
+          })
+        }
       </div >
     )
   }
