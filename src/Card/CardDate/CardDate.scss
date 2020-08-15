@@ -1,7 +1,7 @@
 .Card-date-container{
   display: flex;
   flex-direction: row;
-  margin: 1rem 2rem;
+  margin: 2rem;
 
 .Card-day{
   display: flex;
@@ -20,4 +20,9 @@
     .Card-date{
       padding-left: 1rem;
     }
+}
+@media(max-width:1199px){
+  .Card-date-container{
+  margin: 3rem 2rem 0 2rem;
+  }
 }

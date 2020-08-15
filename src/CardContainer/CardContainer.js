@@ -7,7 +7,7 @@ import CityInput from '../CityInput/CityInput';
 class CardContainer extends React.Component {
   constructor(props) {
     super(props)
-    const lastCity = localStorage.city ? localStorage.getItem('city') : 'Moscow';
+    const lastCity = localStorage.city ? localStorage.getItem('city') : 'London';
     this.state = {
       currentDay: new Date().getDay(),
       loadingData: null,
@@ -34,6 +34,7 @@ class CardContainer extends React.Component {
         })
     } catch (error) {
       setTimeout(() => this.changeLoding(), 1000)
+      localStorage.setItem('city', 'London')
       alert('City not found')
     }
   }
@@ -45,13 +46,10 @@ class CardContainer extends React.Component {
       this.makeApiCall()
     }
   }
-  saveToStorage(key, value) {
-    localStorage.setItem(key, value);
-  }
   changeCity = (newCityStr) => {
     this.setState({
       city: newCityStr
-    }, () => this.saveToStorage('city', this.state.city))
+    }, () => localStorage.setItem('city', this.state.city))
   }
   sortData = (dataArray, dataObj) => {
     //to fix
@@ -67,6 +65,7 @@ class CardContainer extends React.Component {
         sortedArray.push(Object.assign({}, dataObj, { list: [...dataArray.slice(hour + i - 8, hour + i)] }));
       }
     }
+
     this.setState({
       sorted: sortedArray
     })
