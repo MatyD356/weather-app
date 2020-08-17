@@ -52,19 +52,16 @@ class CardContainer extends React.Component {
     }, () => localStorage.setItem('city', this.state.city))
   }
   sortData = (dataArray, dataObj) => {
-    const currentDayData = dataArray.filter(item =>
-      new Date(item.dt_txt).getDay() === this.state.currentDay ? item : null
-    )
     const sortedArray = []
-    let hour = (7 - Math.floor(new Date().getHours() / 3));
-    for (let i = 0; i < dataArray.length; i += 8) {
-      if (i < 8) {
-        sortedArray.push(Object.assign({}, dataObj, { list: currentDayData }));
-      } else {
-        sortedArray.push(Object.assign({}, dataObj, { list: [...dataArray.slice(hour + i - 8, hour + i)] }));
+    for (let i = 0; i < 5; i++) {
+      let activeDay = this.state.currentDay + i
+      if (activeDay > 6) {
+        activeDay -= 7
       }
+      const currentDayData = dataArray.filter(item =>
+        new Date(item.dt_txt).getDay() === activeDay ? item : null)
+      sortedArray.push(Object.assign({}, dataObj, { list: currentDayData }));
     }
-
     this.setState({
       sorted: sortedArray
     })

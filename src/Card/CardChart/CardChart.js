@@ -13,7 +13,6 @@ const CardChart = (props) => {
       return props.apiData.map(item => item.main.pressure)
     } else if (chartType === "Humidity") {
       return props.apiData.map(item => item.main.humidity)
-
     }
   }
   const setUnits = (value) => {
