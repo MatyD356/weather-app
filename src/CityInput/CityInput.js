@@ -6,7 +6,6 @@ const CityInput = ({ newCity }) => {
   const [inputValue, setInputValue] = useState('')
   const handleSearchSubmit = () => {
     newCity(inputValue)
-    console.log(inputValue);
   }
   const handleInput = (e) => {
     setInputValue(e.target.value)

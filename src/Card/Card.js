@@ -92,7 +92,6 @@ const Card = (props) => {
             <CardData
               getDayOfWeek={getDayOfWeek}
               data={data} />
-
             {/* card weather */}
             <CardWeather
               i={i}

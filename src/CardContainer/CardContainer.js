@@ -22,7 +22,8 @@ class CardContainer extends React.Component {
     this.changeLoding()
     try {
       const city = this.state.city
-      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_NOT_SECRET_CODE}`
+      const key = process.env.REACT_APP_NOT_SECRET_CODE
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
       const response = await fetch(url, { mode: 'cors' });
       //eslint-disable-next-line
       const json = await response.json()
@@ -32,7 +33,7 @@ class CardContainer extends React.Component {
           return json
         })
     } catch (error) {
-      setTimeout(() => this.changeLoding(), 1000)
+      console.log(error);
       localStorage.setItem('city', 'London')
       alert('City not found')
     }
@@ -101,15 +102,14 @@ class CardContainer extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         className="CardContainer" >
         <CityInput newCity={this.changeCity} />
-        {
-          this.state.sorted.map((item, index) => {
-            return (<Card
-              id={uuidv4()}
-              key={index}
-              loading={this.state.loadingData}
-              data={item}
-            />)
-          })
+        {this.state.data ? this.state.sorted.map((item, index) => {
+          return (<Card
+            id={uuidv4()}
+            key={index}
+            loading={this.state.loadingData}
+            data={item}
+          />)
+        }) : null
         }
       </div >
     )
