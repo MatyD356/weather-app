@@ -22,8 +22,7 @@ class CardContainer extends React.Component {
     this.changeLoding()
     try {
       const city = this.state.city
-      const key = process.env.REACT_APP_NOT_SECRET_CODE;
-      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_NOT_SECRET_CODE}`
       const response = await fetch(url, { mode: 'cors' });
       //eslint-disable-next-line
       const json = await response.json()
